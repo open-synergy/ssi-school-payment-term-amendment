@@ -1,0 +1,506 @@
+scenarios:
+  - name: "School Payment Term Amendment - Operating Unit derivation and visibility"
+    steps:
+      # ---------------------------------------------------------------
+      # Fixtures — two Operating Units, two Schools, two Enrollments.
+      # Two different Operating Units are used throughout so the record
+      # rule is actually exercised, not passed by coincidence.
+      # ---------------------------------------------------------------
+      - step: "Create partner for Operating Unit A"
+        action: "create"
+        model: "res.partner"
+        save_as: "ou_a_partner"
+        values:
+          name: "PTAOU Operating Unit A Partner"
+
+      - step: "Create Operating Unit A"
+        action: "create"
+        model: "operating.unit"
+        save_as: "operating_unit_a"
+        values:
+          name: "TOUR PTAOU Operating Unit A"
+          code: "PTAOUA"
+          partner_id: "REC: ou_a_partner.id"
+
+      - step: "Create partner for Operating Unit B"
+        action: "create"
+        model: "res.partner"
+        save_as: "ou_b_partner"
+        values:
+          name: "PTAOU Operating Unit B Partner"
+
+      - step: "Create Operating Unit B"
+        action: "create"
+        model: "operating.unit"
+        save_as: "operating_unit_b"
+        values:
+          name: "PTAOU Operating Unit B"
+          code: "PTAOUB"
+          partner_id: "REC: ou_b_partner.id"
+
+      - step: "Create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "PTAOU Grade Type"
+          code: "PTAOUGT"
+
+      - step: "Create School A, restricted to Operating Unit A"
+        action: "create"
+        model: "school"
+        save_as: "school_a"
+        values:
+          name: "PTAOU School A"
+          code: "PTAOUSCA"
+          grade_type_id: "REC: grade_type.id"
+          operating_unit_ids: [[6, 0, ["REC: operating_unit_a.id"]]]
+
+      - step: "Create School B, restricted to Operating Unit B"
+        action: "create"
+        model: "school"
+        save_as: "school_b"
+        values:
+          name: "PTAOU School B"
+          code: "PTAOUSCB"
+          grade_type_id: "REC: grade_type.id"
+          operating_unit_ids: [[6, 0, ["REC: operating_unit_b.id"]]]
+
+      - step: "Create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "PTAOU Academic Year"
+          code: "PTAOUAY"
+          date_start: "2026-07-01"
+          date_end: "2027-06-30"
+
+      - step: "Create academic term"
+        action: "create"
+        model: "school_academic_term"
+        save_as: "academic_term"
+        values:
+          name: "PTAOU Academic Term"
+          code: "PTAOUTM"
+          date_start: "2026-07-01"
+          date_end: "2026-12-31"
+          year_id: "REC: academic_year.id"
+
+      - step: "Create grade"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade"
+        values:
+          name: "PTAOU Grade"
+          code: "PTAOUGR"
+          type_id: "REC: grade_type.id"
+
+      - step: "Create Grade Class for School A"
+        action: "create"
+        model: "school_grade_class"
+        save_as: "grade_class_a"
+        values:
+          name: "PTAOU Class A"
+          code: "PTAOUCLA"
+          school_id: "REC: school_a.id"
+          grade_id: "REC: grade.id"
+
+      - step: "Create Grade Class for School B"
+        action: "create"
+        model: "school_grade_class"
+        save_as: "grade_class_b"
+        values:
+          name: "PTAOU Class B"
+          code: "PTAOUCLB"
+          school_id: "REC: school_b.id"
+          grade_id: "REC: grade.id"
+
+      - step: "Create Student A's contact"
+        action: "create"
+        model: "res.partner"
+        save_as: "contact_a"
+        values:
+          name: "PTAOU Contact A"
+
+      - step: "Create Student A, in School A"
+        action: "create"
+        model: "school_student"
+        save_as: "student_a"
+        values:
+          name: "PTAOU Student A"
+          code: "PTAOUSTA"
+          contact_id: "REC: contact_a.id"
+          school_id: "REC: school_a.id"
+
+      - step: "Create Student B's contact"
+        action: "create"
+        model: "res.partner"
+        save_as: "contact_b"
+        values:
+          name: "PTAOU Contact B"
+
+      - step: "Create Student B, in School B"
+        action: "create"
+        model: "school_student"
+        save_as: "student_b"
+        values:
+          name: "PTAOU Student B"
+          code: "PTAOUSTB"
+          contact_id: "REC: contact_b.id"
+          school_id: "REC: school_b.id"
+
+      - step: "Create Enrollment A, targeting School A"
+        action: "create"
+        model: "school_enrollment"
+        save_as: "enrollment_a"
+        values:
+          academic_year_id: "REC: academic_year.id"
+          academic_term_id: "REC: academic_term.id"
+          school_id: "REC: school_a.id"
+          grade_id: "REC: grade.id"
+          grade_class_id: "REC: grade_class_a.id"
+          student_id: "REC: student_a.id"
+
+      - step: "Enrollment A derives Operating Unit A from its School"
+        action: "assert"
+        target: "enrollment_a"
+        asserts:
+          operating_unit_id:
+            type: "m2o"
+            expected: "REC: operating_unit_a"
+
+      - step: "Create Enrollment B, targeting School B"
+        action: "create"
+        model: "school_enrollment"
+        save_as: "enrollment_b"
+        values:
+          academic_year_id: "REC: academic_year.id"
+          academic_term_id: "REC: academic_term.id"
+          school_id: "REC: school_b.id"
+          grade_id: "REC: grade.id"
+          grade_class_id: "REC: grade_class_b.id"
+          student_id: "REC: student_b.id"
+
+      - step: "Enrollment B derives Operating Unit B from its School"
+        action: "assert"
+        target: "enrollment_b"
+        asserts:
+          operating_unit_id:
+            type: "m2o"
+            expected: "REC: operating_unit_b"
+
+      - step: "Create shared amendment reason"
+        action: "create"
+        model: "school_payment_term_amendment_reason"
+        save_as: "reason"
+        values:
+          name: "PTAOU Reason"
+          code: "PTAOURS"
+
+      # ---------------------------------------------------------------
+      # Positive — deriving operating_unit_id from enrollment_id
+      # ---------------------------------------------------------------
+      - step: "Create an amendment on Enrollment A without operating_unit_id"
+        action: "create"
+        model: "school_payment_term_amendment"
+        save_as: "doc_derive_a"
+        values:
+          enrollment_id: "REC: enrollment_a.id"
+          reason_id: "REC: reason.id"
+
+      - step: "It derived Operating Unit A from the Enrollment"
+        action: "assert"
+        target: "doc_derive_a"
+        asserts:
+          operating_unit_id:
+            type: "m2o"
+            expected: "REC: operating_unit_a"
+
+      # ---------------------------------------------------------------
+      # Positive — an explicit operating_unit_id wins over derivation
+      # ---------------------------------------------------------------
+      - step:
+          "Create an amendment on Enrollment A with operating_unit_id set explicitly to
+          B"
+        action: "create"
+        model: "school_payment_term_amendment"
+        save_as: "doc_explicit"
+        values:
+          enrollment_id: "REC: enrollment_a.id"
+          reason_id: "REC: reason.id"
+          operating_unit_id: "REC: operating_unit_b.id"
+
+      - step: "The explicit value is kept, not overridden by derivation"
+        action: "assert"
+        target: "doc_explicit"
+        asserts:
+          operating_unit_id:
+            type: "m2o"
+            expected: "REC: operating_unit_b"
+
+      # ---------------------------------------------------------------
+      # Positive — write() re-derives operating_unit_id when
+      # enrollment_id itself changes
+      # ---------------------------------------------------------------
+      - step: "Change doc_derive_a's Enrollment to Enrollment B"
+        action: "write"
+        target: "doc_derive_a"
+        values:
+          enrollment_id: "REC: enrollment_b.id"
+
+      - step: "operating_unit_id followed the Enrollment to B"
+        action: "assert"
+        target: "doc_derive_a"
+        asserts:
+          operating_unit_id:
+            type: "m2o"
+            expected: "REC: operating_unit_b"
+
+      # ---------------------------------------------------------------
+      # Positive — @api.onchange mirrors the create/write derivation,
+      # so the form shows the right value before the record is saved
+      # ---------------------------------------------------------------
+      - step: "Selecting Enrollment A on the form derives Operating Unit A"
+        action: "form"
+        model: "school_payment_term_amendment"
+        save: false
+        values:
+          enrollment_id: "REC: enrollment_a"
+          reason_id: "REC: reason"
+        asserts:
+          operating_unit_id:
+            type: "m2o"
+            expected: "REC: operating_unit_a"
+
+      # ---------------------------------------------------------------
+      # Fixtures for the record rule scenarios — one document per
+      # Operating Unit, and a user restricted to Operating Unit A only.
+      # ---------------------------------------------------------------
+      - step: "Create the Operating Unit A visibility fixture document"
+        action: "create"
+        model: "school_payment_term_amendment"
+        save_as: "doc_vis_a"
+        values:
+          enrollment_id: "REC: enrollment_a.id"
+          reason_id: "REC: reason.id"
+
+      - step: "Create the Operating Unit B visibility fixture document"
+        action: "create"
+        model: "school_payment_term_amendment"
+        save_as: "doc_vis_b"
+        values:
+          enrollment_id: "REC: enrollment_b.id"
+          reason_id: "REC: reason.id"
+
+      - step: "Create a user restricted to Operating Unit A only"
+        action: "create"
+        model: "res.users"
+        save_as: "user_ou_a"
+        values:
+          name: "PTAOU User OU A"
+          login: "ptaou_user_ou_a@example.com"
+          groups_id:
+            [
+              [
+                6,
+                0,
+                [
+                  "REF: base.group_user",
+                  "REF:
+                  ssi_school_payment_term_amendment.school_payment_term_amendment_viewer_group",
+                  "REF:
+                  ssi_school_payment_term_amendment_operating_unit.school_payment_term_amendment_operating_unit_group",
+                ],
+              ],
+            ]
+          assigned_operating_unit_ids: [[6, 0, ["REC: operating_unit_a.id"]]]
+
+      # ---------------------------------------------------------------
+      # Positive — search as a user of Operating Unit A only returns
+      # the Operating Unit A document
+      # ---------------------------------------------------------------
+      - step: "Search both documents as User OU A"
+        action: "search"
+        model: "school_payment_term_amendment"
+        domain: [["id", "in", ["REC: doc_vis_a.id", "REC: doc_vis_b.id"]]]
+        as_user: "user_ou_a"
+        save_as: "visible_docs"
+        expect_count: 1
+
+      - step: "The one visible document is the Operating Unit A document"
+        action: "assert"
+        target: "visible_docs"
+        asserts:
+          id:
+            type: "value"
+            expected: "REC: doc_vis_a.id"
+
+      # ---------------------------------------------------------------
+      # Negative — reading the Operating Unit B document directly by
+      # id, as a user restricted to Operating Unit A, is denied
+      # ---------------------------------------------------------------
+      - step: "Reading the Operating Unit B document directly is denied"
+        action: "call"
+        target: "doc_vis_b"
+        method: "read"
+        as_user: "user_ou_a"
+        args:
+          - ["id"]
+        expect_error:
+          type: "AccessError"
+
+  - name: "School Payment Term Amendment - Enrollment without its own Operating Unit"
+    steps:
+      # ---------------------------------------------------------------
+      # Fixtures — self-contained (scenarios do not share the REC:
+      # registry). A single School/Enrollment chain, with
+      # operating_unit_id explicitly set to False on the enrollment so
+      # the school->operating_unit_ids derivation from
+      # ssi_school_operating_unit never applies (it only fires when
+      # "operating_unit_id" is absent from vals).
+      # ---------------------------------------------------------------
+      - step: "Create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "PTAOU No-OU Grade Type"
+          code: "PTAOUNOGT"
+
+      - step: "Create School, with no Operating Unit restriction"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "PTAOU No-OU School"
+          code: "PTAOUNOSC"
+          grade_type_id: "REC: grade_type.id"
+
+      - step: "Create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "PTAOU No-OU Academic Year"
+          code: "PTAOUNOAY"
+          date_start: "2026-07-01"
+          date_end: "2027-06-30"
+
+      - step: "Create academic term"
+        action: "create"
+        model: "school_academic_term"
+        save_as: "academic_term"
+        values:
+          name: "PTAOU No-OU Academic Term"
+          code: "PTAOUNOTM"
+          date_start: "2026-07-01"
+          date_end: "2026-12-31"
+          year_id: "REC: academic_year.id"
+
+      - step: "Create grade"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade"
+        values:
+          name: "PTAOU No-OU Grade"
+          code: "PTAOUNOGR"
+          type_id: "REC: grade_type.id"
+
+      - step: "Create Grade Class"
+        action: "create"
+        model: "school_grade_class"
+        save_as: "grade_class"
+        values:
+          name: "PTAOU No-OU Class"
+          code: "PTAOUNOCL"
+          school_id: "REC: school.id"
+          grade_id: "REC: grade.id"
+
+      - step: "Create Student's contact"
+        action: "create"
+        model: "res.partner"
+        save_as: "contact"
+        values:
+          name: "PTAOU No-OU Contact"
+
+      - step: "Create Student"
+        action: "create"
+        model: "school_student"
+        save_as: "student"
+        values:
+          name: "PTAOU No-OU Student"
+          code: "PTAOUNOST"
+          contact_id: "REC: contact.id"
+          school_id: "REC: school.id"
+
+      - step: "Create Enrollment with operating_unit_id explicitly False"
+        action: "create"
+        model: "school_enrollment"
+        save_as: "enrollment"
+        values:
+          academic_year_id: "REC: academic_year.id"
+          academic_term_id: "REC: academic_term.id"
+          school_id: "REC: school.id"
+          grade_id: "REC: grade.id"
+          grade_class_id: "REC: grade_class.id"
+          student_id: "REC: student.id"
+          operating_unit_id: false
+
+      - step: "The premise -- Enrollment has no Operating Unit of its own"
+        action: "assert"
+        target: "enrollment"
+        asserts:
+          operating_unit_id:
+            type: "value"
+            operator: "is_falsy"
+
+      - step: "Create shared amendment reason"
+        action: "create"
+        model: "school_payment_term_amendment_reason"
+        save_as: "reason"
+        values:
+          name: "PTAOU No-OU Reason"
+          code: "PTAOUNORS"
+
+      # ---------------------------------------------------------------
+      # Positive — no Operating Unit to derive from the Enrollment
+      # means derive_operating_unit_from_enrollment_vals leaves
+      # operating_unit_id out of vals entirely
+      # (get_operating_unit_id_from_enrollment returns None, so the
+      # "if operating_unit_id:" check takes its else branch and never
+      # touches vals).
+      #
+      # operating_unit_id is left OUT of values: here on purpose, so
+      # the create()/write() override under test still runs its own
+      # derivation logic on a genuinely missing key -- setting it to
+      # false explicitly here would short-circuit that logic via its
+      # own "operating_unit_id in vals" early-return and cover nothing
+      # new. But leaving the key out also means the ORM's *own*
+      # mixin.single_operating_unit field default applies afterwards,
+      # and base.user_root (the super-user this test runs as) has
+      # default_operating_unit_id set to "Main Operating Unit" by
+      # operating_unit's own (non-demo) data
+      # (data/operating_unit_data.xml) -- so without suppressing it,
+      # the created document would end up with that Operating Unit,
+      # not falsy. context.default_operating_unit_id below suppresses
+      # only that unrelated field default, which plays no part in the
+      # branches under test.
+      # ---------------------------------------------------------------
+      - step: "Create an amendment on the Enrollment without an Operating Unit"
+        action: "create"
+        model: "school_payment_term_amendment"
+        save_as: "doc_no_ou"
+        context:
+          default_operating_unit_id: false
+        values:
+          enrollment_id: "REC: enrollment.id"
+          reason_id: "REC: reason.id"
+
+      - step: "The amendment document also has no Operating Unit"
+        action: "assert"
+        target: "doc_no_ou"
+        asserts:
+          operating_unit_id:
+            type: "value"
+            operator: "is_falsy"
