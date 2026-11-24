@@ -1,0 +1,1447 @@
+scenarios:
+  - name: Payment Term Amendment - Open Enrollment, Operations, and Prerequisites
+    options:
+      auto_refresh: true
+    steps:
+      - step: Create the grade type
+        action: create
+        model: school_grade_type
+        save_as: a_grade_type
+        values:
+          name: AMA Grade Type
+          code: AMAGT
+      - step: Create the school
+        action: create
+        model: school
+        save_as: a_school
+        values:
+          name: AMA School
+          code: AMASC
+          grade_type_id: "REC: a_grade_type.id"
+      - step: Create the academic year
+        action: create
+        model: school_academic_year
+        save_as: a_academic_year
+        values:
+          name: AMA Academic Year
+          code: AMAAY
+          date_start: "2026-07-01"
+          date_end: "2027-06-30"
+      - step: Create the grade
+        action: create
+        model: school_grade
+        save_as: a_grade
+        values:
+          name: AMA Grade
+          code: AMAGR
+          type_id: "REC: a_grade_type.id"
+      - step: Create the grade class
+        action: create
+        model: school_grade_class
+        save_as: a_grade_class
+        values:
+          name: AMA Class
+          code: AMACL
+          school_id: "REC: a_school.id"
+          grade_id: "REC: a_grade.id"
+      - step: Create the academic term (enrollment window open)
+        action: create
+        model: school_academic_term
+        save_as: a_term
+        values:
+          name: AMA Term
+          code: AMATM
+          date_start: "2026-07-01"
+          date_end: "2026-12-31"
+          year_id: "REC: a_academic_year.id"
+          enrollment_state: open
+      - step: Create the student contact main
+        action: create
+        model: res.partner
+        save_as: a_contact_main
+        values:
+          name: AMA Contact main
+      - step: Create the student main
+        action: create
+        model: school_student
+        save_as: a_student_main
+        values:
+          name: AMA Student main
+          code: AMASTMAIN
+          contact_id: "REC: a_contact_main.id"
+          school_id: "REC: a_school.id"
+      - step: Create the student contact draft
+        action: create
+        model: res.partner
+        save_as: a_contact_draft
+        values:
+          name: AMA Contact draft
+      - step: Create the student draft
+        action: create
+        model: school_student
+        save_as: a_student_draft
+        values:
+          name: AMA Student draft
+          code: AMASTDRAFT
+          contact_id: "REC: a_contact_draft.id"
+          school_id: "REC: a_school.id"
+      - step: Get the revenue account type
+        action: ref
+        xml_id: account.data_account_type_revenue
+        save_as: a_type_income
+      - step: Create the income account
+        action: create
+        model: account.account
+        save_as: a_income_account
+        values:
+          name: AMA Income Account
+          code: AMAIA
+          user_type_id: "REC: a_type_income.id"
+          reconcile: false
+      - step: Create product A
+        action: create
+        model: product.product
+        save_as: a_product_a
+        values:
+          name: AMA Product A
+          type: service
+      - step: Create product B
+        action: create
+        model: product.product
+        save_as: a_product_b
+        values:
+          name: AMA Product B
+          type: service
+      - step: Create the amendment reason
+        action: create
+        model: school_payment_term_amendment_reason
+        save_as: a_reason
+        values:
+          name: AMA Reason
+          code: AMARS
+      - step: Get the sale journal
+        action: search
+        model: account.journal
+        domain:
+          - - type
+            - "="
+            - sale
+        save_as: a_journal
+        limit: 1
+      - step: Get the receivable account type
+        action: ref
+        xml_id: account.data_account_type_receivable
+        save_as: a_type_rec
+      - step: Create the receivable account
+        action: create
+        model: account.account
+        save_as: a_rec_account
+        values:
+          name: AMA Receivable Account
+          code: AMAREC
+          user_type_id: "REC: a_type_rec.id"
+          reconcile: true
+      - step: Create the customer invoice type
+        action: create
+        model: customer_invoice_type
+        save_as: a_ci_type
+        values:
+          name: AMA Customer Invoice Type
+          code: AMACIT
+          journal_id: "REC: a_journal.id"
+          receivable_account_id: "REC: a_rec_account.id"
+      - step: Create the open enrollment
+        action: create
+        model: school_enrollment
+        save_as: a_enrollment
+        values:
+          academic_year_id: "REC: a_academic_year.id"
+          academic_term_id: "REC: a_term.id"
+          school_id: "REC: a_school.id"
+          grade_id: "REC: a_grade.id"
+          grade_class_id: "REC: a_grade_class.id"
+          student_id: "REC: a_student_main.id"
+          user_id: "REF: base.user_admin"
+          currency_id: "REC: company.currency_id.id"
+          receivable_journal_id: "REC: a_journal.id"
+          receivable_account_id: "REC: a_rec_account.id"
+          customer_invoice_type_id: "REC: a_ci_type.id"
+          auto_confirm_customer_invoice: false
+      - step: Confirm the enrollment
+        action: call
+        target: a_enrollment
+        method: action_confirm
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: confirm
+      - step: Approve the enrollment, reaching Open
+        action: call
+        target: a_enrollment
+        method: action_approve_approval
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: open
+      - step: Create term A Term 1
+        action: create
+        model: school_enrollment_payment_term
+        save_as: a_t1
+        values:
+          enrollment_id: "REC: a_enrollment.id"
+          name: A Term 1
+          sequence: 10
+      - step: Create term A Term 2
+        action: create
+        model: school_enrollment_payment_term
+        save_as: a_t2
+        values:
+          enrollment_id: "REC: a_enrollment.id"
+          name: A Term 2
+          sequence: 20
+      - step: Create detail A Fee 1 (void)
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_d1
+        values:
+          term_id: "REC: a_t1.id"
+          product_id: "REC: a_product_a.id"
+          name: A Fee 1 (void)
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 100000.0
+      - step: Create detail A Fee 2 (reprice)
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_d2
+        values:
+          term_id: "REC: a_t1.id"
+          product_id: "REC: a_product_a.id"
+          name: A Fee 2 (reprice)
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 200000.0
+      - step: Create detail A Fee 3 (untouched)
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_d3
+        values:
+          term_id: "REC: a_t1.id"
+          product_id: "REC: a_product_a.id"
+          name: A Fee 3 (untouched)
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 50000.0
+      - step: Create detail A Fee 4 (untouched)
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_d4
+        values:
+          term_id: "REC: a_t2.id"
+          product_id: "REC: a_product_a.id"
+          name: A Fee 4 (untouched)
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 70000.0
+      - step: Create amendment document 1
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc1
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l1
+        values:
+          amendment_id: "REC: a_doc1.id"
+          type: void
+          term_id: "REC: a_t1.id"
+          detail_id: "REC: a_d1.id"
+      - step: Create line change price
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l2
+        values:
+          amendment_id: "REC: a_doc1.id"
+          type: change_price
+          term_id: "REC: a_t1.id"
+          detail_id: "REC: a_d2.id"
+          price_unit_before: 200000.0
+          price_unit: 150000.0
+      - step: Create line add detail
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3
+        values:
+          amendment_id: "REC: a_doc1.id"
+          type: add_detail
+          term_id: "REC: a_t2.id"
+          product_id: "REC: a_product_b.id"
+          name: Added fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 30000.0
+      - step: Create line add term
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l4
+        values:
+          amendment_id: "REC: a_doc1.id"
+          type: add_term
+          term_name: A New Term
+          term_sequence: 50
+      - step: Create line add detail on new term
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l5
+        values:
+          amendment_id: "REC: a_doc1.id"
+          type: add_detail
+          new_term_line_id: "REC: a_l4.id"
+          product_id: "REC: a_product_a.id"
+          name: Added fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 60000.0
+      - step: Confirm amendment 1
+        action: call
+        target: a_doc1
+        method: action_confirm
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: confirm
+      - step: Approve amendment 1, reaching Done automatically
+        action: call
+        target: a_doc1
+        method: action_approve_approval
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: done
+      - step: Assert the voided detail keeps its price
+        action: assert
+        target: a_d1
+        asserts:
+          voided:
+            type: value
+            expected: true
+          price_unit:
+            type: value
+            expected: 100000.0
+      - step: Assert the repriced detail
+        action: assert
+        target: a_d2
+        asserts:
+          voided:
+            type: value
+            expected: false
+          price_unit:
+            type: value
+            expected: 150000.0
+      - step: Assert the untouched detail
+        action: assert
+        target: a_d3
+        asserts:
+          voided:
+            type: value
+            expected: false
+          price_unit:
+            type: value
+            expected: 50000.0
+      - step: Assert term 1 total skips the voided line
+        action: assert
+        target: a_t1
+        asserts:
+          amount_total:
+            type: value
+            expected: 200000.0
+      - step: Assert term 2 total includes the added detail
+        action: assert
+        target: a_t2
+        asserts:
+          amount_total:
+            type: value
+            expected: 100000.0
+      - step: Assert the detail added on term 2
+        action: assert
+        target: a_l3
+        asserts:
+          created_detail_id.locked:
+            type: value
+            expected: true
+          created_detail_id.price_unit:
+            type: value
+            expected: 30000.0
+          created_detail_id.term_id:
+            type: m2o
+            expected: "REC: a_t2"
+      - step: Assert the term created by the add term line
+        action: assert
+        target: a_l4
+        asserts:
+          created_term_id.locked:
+            type: value
+            expected: true
+          created_term_id.name:
+            type: value
+            expected: A New Term
+          created_term_id.sequence:
+            type: value
+            expected: 50
+          created_term_id.amount_total:
+            type: value
+            expected: 60000.0
+          created_term_id.enrollment_id:
+            type: m2o
+            expected: "REC: a_enrollment"
+      - step: Assert the detail added on the new term
+        action: assert
+        target: a_l5
+        asserts:
+          created_detail_id.locked:
+            type: value
+            expected: true
+          created_detail_id.price_unit:
+            type: value
+            expected: 60000.0
+      - step: Assert the enrollment total follows the amendment
+        action: assert
+        target: a_enrollment
+        asserts:
+          amount_total:
+            type: value
+            expected: 360000.0
+      - step: Assert the enrollment chatter got the notification
+        action: search
+        model: mail.message
+        domain:
+          - - model
+            - "="
+            - school_enrollment
+          - - res_id
+            - "="
+            - "REC: a_enrollment.id"
+          - - body
+            - like
+            - model=school_payment_term_amendment
+        save_as: a_notification
+        expect_count: 1
+      - step: "Open a line form: a Change Price detail fills the prices"
+        action: form
+        model: school_payment_term_amendment_line
+        save: false
+        values:
+          type: change_price
+          term_id: "REC: a_t2"
+          detail_id: "REC: a_d4"
+        asserts:
+          price_unit_before:
+            type: value
+            expected: 70000.0
+          price_unit:
+            type: value
+            expected: 70000.0
+      - step: "Open a line form: Add Term clears the target term"
+        action: form
+        model: school_payment_term_amendment_line
+        save: false
+        values:
+          term_id: "REC: a_t2"
+          type: add_term
+        asserts:
+          term_id:
+            type: value
+            operator: is_falsy
+      - step: "Open a line form: a type other than Add Detail clears New Term"
+        action: form
+        model: school_payment_term_amendment_line
+        save: false
+        values:
+          new_term_line_id: "REC: a_l4"
+          type: change_price
+        asserts:
+          new_term_line_id:
+            type: value
+            operator: is_falsy
+      - step: Create amendment document 2 (line negatives)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc2
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Reject line void without detail
+        action: create
+        model: school_payment_term_amendment_line
+        expect_error:
+          type: ValidationError
+          message_contains: Payment Term and Detail are required
+        values:
+          amendment_id: "REC: a_doc2.id"
+          type: void
+          term_id: "REC: a_t2.id"
+      - step: Reject line change price without term
+        action: create
+        model: school_payment_term_amendment_line
+        expect_error:
+          type: ValidationError
+          message_contains: Payment Term and Detail are required
+        values:
+          amendment_id: "REC: a_doc2.id"
+          type: change_price
+          detail_id: "REC: a_d4.id"
+          price_unit: 1000.0
+      - step: Reject line add detail without product
+        action: create
+        model: school_payment_term_amendment_line
+        expect_error:
+          type: ValidationError
+          message_contains: Product, Account and UoM are required
+        values:
+          amendment_id: "REC: a_doc2.id"
+          type: add_detail
+          term_id: "REC: a_t2.id"
+          price_unit: 1000.0
+      - step: Reject line add detail with two targets
+        action: create
+        model: school_payment_term_amendment_line
+        expect_error:
+          type: ValidationError
+          message_contains: Set exactly one of Payment Term and New Term
+        values:
+          amendment_id: "REC: a_doc2.id"
+          type: add_detail
+          term_id: "REC: a_t2.id"
+          new_term_line_id: "REC: a_l4.id"
+          product_id: "REC: a_product_b.id"
+          name: Added fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 30000.0
+      - step: Reject line add term without name
+        action: create
+        model: school_payment_term_amendment_line
+        expect_error:
+          type: ValidationError
+          message_contains: New Term Name is required
+        values:
+          amendment_id: "REC: a_doc2.id"
+          type: add_term
+      - step: Reject line change price below zero
+        action: create
+        model: school_payment_term_amendment_line
+        expect_error:
+          type: ValidationError
+          message_contains: is negative
+        values:
+          amendment_id: "REC: a_doc2.id"
+          type: change_price
+          term_id: "REC: a_t2.id"
+          detail_id: "REC: a_d4.id"
+          price_unit: -1.0
+      - step: Create amendment document 3a (no line)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3a
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Confirm must be rejected -- no line
+        action: call
+        target: a_doc3a
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: Document has no line
+      - step: Create the draft enrollment
+        action: create
+        model: school_enrollment
+        save_as: a_draft_enrollment
+        values:
+          academic_year_id: "REC: a_academic_year.id"
+          academic_term_id: "REC: a_term.id"
+          school_id: "REC: a_school.id"
+          grade_id: "REC: a_grade.id"
+          grade_class_id: "REC: a_grade_class.id"
+          student_id: "REC: a_student_draft.id"
+          user_id: "REF: base.user_admin"
+          currency_id: "REC: company.currency_id.id"
+          receivable_journal_id: "REC: a_journal.id"
+          receivable_account_id: "REC: a_rec_account.id"
+          customer_invoice_type_id: "REC: a_ci_type.id"
+          auto_confirm_customer_invoice: false
+      - step: Create term A Draft Term
+        action: create
+        model: school_enrollment_payment_term
+        save_as: a_dt
+        values:
+          enrollment_id: "REC: a_draft_enrollment.id"
+          name: A Draft Term
+      - step: Create detail A Draft Fee
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_dd
+        values:
+          term_id: "REC: a_dt.id"
+          product_id: "REC: a_product_a.id"
+          name: A Draft Fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 10000.0
+      - step: Create amendment document 3b (draft enrollment)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3b
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_draft_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void on draft enrollment
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3b
+        values:
+          amendment_id: "REC: a_doc3b.id"
+          type: void
+          term_id: "REC: a_dt.id"
+          detail_id: "REC: a_dd.id"
+      - step: Confirm must be rejected -- enrollment is draft
+        action: call
+        target: a_doc3b
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: neither Open nor Done
+      - step: Create amendment document 3c (term of another enrollment)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3c
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void on a foreign term
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3c
+        values:
+          amendment_id: "REC: a_doc3c.id"
+          type: void
+          term_id: "REC: a_dt.id"
+          detail_id: "REC: a_dd.id"
+      - step: Confirm must be rejected -- term belongs to another enrollment
+        action: call
+        target: a_doc3c
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: does not belong to Enrollment
+      - step: Create amendment document 3d (detail of another term)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3d
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void with a mismatching detail
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3d
+        values:
+          amendment_id: "REC: a_doc3d.id"
+          type: void
+          term_id: "REC: a_t2.id"
+          detail_id: "REC: a_d3.id"
+      - step: Confirm must be rejected -- detail belongs to another term
+        action: call
+        target: a_doc3d
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: does not belong to Payment Term
+      - step: Create amendment document 3e (already voided)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3e
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void an already voided detail
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3e
+        values:
+          amendment_id: "REC: a_doc3e.id"
+          type: void
+          term_id: "REC: a_t1.id"
+          detail_id: "REC: a_d1.id"
+      - step: Confirm must be rejected -- detail is already voided
+        action: call
+        target: a_doc3e
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: is already voided
+      - step: Create detail A Fee 6 (duplicate)
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_d6
+        values:
+          term_id: "REC: a_t2.id"
+          product_id: "REC: a_product_a.id"
+          name: A Fee 6 (duplicate)
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 20000.0
+      - step: Create amendment document 3f (duplicate detail)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3f
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void d6
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3f1
+        values:
+          amendment_id: "REC: a_doc3f.id"
+          type: void
+          term_id: "REC: a_t2.id"
+          detail_id: "REC: a_d6.id"
+      - step: Create line change price d6
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3f2
+        values:
+          amendment_id: "REC: a_doc3f.id"
+          type: change_price
+          term_id: "REC: a_t2.id"
+          detail_id: "REC: a_d6.id"
+          price_unit: 5000.0
+      - step: Confirm must be rejected -- same detail on two lines
+        action: call
+        target: a_doc3f
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: appears on more than one line
+      - step: Create amendment document 3g (add term without detail)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3g
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line add a term nobody fills
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3g
+        values:
+          amendment_id: "REC: a_doc3g.id"
+          type: add_term
+          term_name: A Orphan Term
+      - step: Confirm must be rejected -- new term has no add detail line
+        action: call
+        target: a_doc3g
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: has no Add Detail line
+      - step: Create term A Invoiced Term
+        action: create
+        model: school_enrollment_payment_term
+        save_as: a_ti
+        values:
+          enrollment_id: "REC: a_enrollment.id"
+          name: A Invoiced Term
+          sequence: 30
+      - step: Create detail A Invoiced Fee
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_di
+        values:
+          term_id: "REC: a_ti.id"
+          product_id: "REC: a_product_a.id"
+          name: A Invoiced Fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 40000.0
+      - step: Invoice the term ahead of the amendment
+        action: call
+        target: a_ti
+        method: action_create_invoice
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: invoiced
+      - step: Create amendment document 3h (invoiced term)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3h
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void on an invoiced term
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3h
+        values:
+          amendment_id: "REC: a_doc3h.id"
+          type: void
+          term_id: "REC: a_ti.id"
+          detail_id: "REC: a_di.id"
+      - step: Confirm must be rejected -- term already invoiced
+        action: call
+        target: a_doc3h
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: already has a Customer Invoice
+      - step: Create amendment document 3i (add detail on invoiced term)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3i
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line add detail on an invoiced term
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3i
+        values:
+          amendment_id: "REC: a_doc3i.id"
+          type: add_detail
+          term_id: "REC: a_ti.id"
+          product_id: "REC: a_product_b.id"
+          name: Added fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 30000.0
+      - step: Confirm must be rejected -- adding on an invoiced term
+        action: call
+        target: a_doc3i
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: already has a Customer Invoice
+      - step: Create term A Disconnected Term
+        action: create
+        model: school_enrollment_payment_term
+        save_as: a_tj
+        values:
+          enrollment_id: "REC: a_enrollment.id"
+          name: A Disconnected Term
+          sequence: 40
+      - step: Create detail A Disconnected Fee
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_dj
+        values:
+          term_id: "REC: a_tj.id"
+          product_id: "REC: a_product_a.id"
+          name: A Disconnected Fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 40000.0
+      - step: Invoice the term then disconnect its invoice
+        action: call
+        target: a_tj
+        method: action_create_invoice
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: invoiced
+      - step: Disconnect the invoice, keeping the invoice line link
+        action: call
+        target: a_tj
+        method: action_disconnect_invoice
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: uninvoiced
+      - step: Create amendment document 3j (invoiced line)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc3j
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void an invoiced line
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l3j
+        values:
+          amendment_id: "REC: a_doc3j.id"
+          type: void
+          term_id: "REC: a_tj.id"
+          detail_id: "REC: a_dj.id"
+      - step: Confirm must be rejected -- detail already invoiced
+        action: call
+        target: a_doc3j
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: already has a Customer Invoice Line
+      - step: Create term A Race Term
+        action: create
+        model: school_enrollment_payment_term
+        save_as: a_tk
+        values:
+          enrollment_id: "REC: a_enrollment.id"
+          name: A Race Term
+          sequence: 60
+      - step: Create detail A Race Fee
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: a_dk
+        values:
+          term_id: "REC: a_tk.id"
+          product_id: "REC: a_product_a.id"
+          name: A Race Fee
+          account_id: "REC: a_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 40000.0
+      - step: Create amendment document 4 (invoice after confirm)
+        action: create
+        model: school_payment_term_amendment
+        save_as: a_doc4
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: a_enrollment.id"
+          reason_id: "REC: a_reason.id"
+      - step: Create line void the race detail
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: a_l4x
+        values:
+          amendment_id: "REC: a_doc4.id"
+          type: void
+          term_id: "REC: a_tk.id"
+          detail_id: "REC: a_dk.id"
+      - step: Confirm amendment 4 -- the term is still uninvoiced
+        action: call
+        target: a_doc4
+        method: action_confirm
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: confirm
+      - step: Invoice the term in between Confirm and Approve
+        action: call
+        target: a_tk
+        method: action_create_invoice
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: invoiced
+      - step: Approve must be rejected -- the term got invoiced
+        action: call
+        target: a_doc4
+        method: action_approve_approval
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: already has a Customer Invoice
+      - step: Assert the detail was not voided
+        action: assert
+        target: a_dk
+        asserts:
+          voided:
+            type: value
+            expected: false
+  - name: Payment Term Amendment - Done Enrollment
+    options:
+      auto_refresh: true
+    steps:
+      - step: Get the sale journal
+        action: search
+        model: account.journal
+        domain:
+          - - type
+            - "="
+            - sale
+        save_as: b_journal
+        limit: 1
+      - step: Get the receivable account type
+        action: ref
+        xml_id: account.data_account_type_receivable
+        save_as: b_type_rec
+      - step: Create the receivable account
+        action: create
+        model: account.account
+        save_as: b_rec_account
+        values:
+          name: AMB Receivable Account
+          code: AMBREC
+          user_type_id: "REC: b_type_rec.id"
+          reconcile: true
+      - step: Create the customer invoice type
+        action: create
+        model: customer_invoice_type
+        save_as: b_ci_type
+        values:
+          name: AMB Customer Invoice Type
+          code: AMBCIT
+          journal_id: "REC: b_journal.id"
+          receivable_account_id: "REC: b_rec_account.id"
+      - step: Get the revenue account type
+        action: ref
+        xml_id: account.data_account_type_revenue
+        save_as: b_type_income
+      - step: Create the income account
+        action: create
+        model: account.account
+        save_as: b_income_account
+        values:
+          name: AMB Income Account
+          code: AMBIA
+          user_type_id: "REC: b_type_income.id"
+      - step: Create product A
+        action: create
+        model: product.product
+        save_as: b_product_a
+        values:
+          name: AMB Product A
+          type: service
+      - step: Create product B
+        action: create
+        model: product.product
+        save_as: b_product_b
+        values:
+          name: AMB Product B
+          type: service
+      - step: Create the pricelist
+        action: create
+        model: product.pricelist
+        save_as: b_pricelist
+        values:
+          name: AMB Pricelist
+          currency_id: "EVAL: env.company.currency_id.id"
+      - step: Create the amendment reason
+        action: create
+        model: school_payment_term_amendment_reason
+        save_as: b_reason
+        values:
+          name: AMB Reason
+          code: AMBRS
+      - step: Create the grade type
+        action: create
+        model: school_grade_type
+        save_as: b_grade_type
+        values:
+          name: AMB Grade Type
+          code: AMBGT
+      - step: Create the school
+        action: create
+        model: school
+        save_as: b_school
+        values:
+          name: AMB School
+          code: AMBSC
+          grade_type_id: "REC: b_grade_type.id"
+      - step: Create the academic year
+        action: create
+        model: school_academic_year
+        save_as: b_academic_year
+        values:
+          name: AMB Academic Year
+          code: AMBAY
+          date_start: "2024-07-01"
+          date_end: "2025-06-30"
+      - step: Create academic term 1 (enrollment open, not last)
+        action: create
+        model: school_academic_term
+        save_as: b_term_1
+        values:
+          name: AMB Term 1
+          code: AMBTM1
+          date_start: "2024-07-01"
+          date_end: "2024-12-31"
+          year_id: "REC: b_academic_year.id"
+          enrollment_state: open
+      - step: Create academic term 2 (last term)
+        action: create
+        model: school_academic_term
+        save_as: b_term_2
+        values:
+          name: AMB Term 2
+          code: AMBTM2
+          date_start: "2025-01-01"
+          date_end: "2025-06-30"
+          year_id: "REC: b_academic_year.id"
+          enrollment_state: close
+      - step: Create the grade
+        action: create
+        model: school_grade
+        save_as: b_grade
+        values:
+          name: AMB Grade
+          code: AMBGR
+          sequence: 10
+          type_id: "REC: b_grade_type.id"
+      - step: Create the grade class
+        action: create
+        model: school_grade_class
+        save_as: b_grade_class
+        values:
+          name: AMB Class
+          code: AMBCL
+          school_id: "REC: b_school.id"
+          grade_id: "REC: b_grade.id"
+      - step: Create the student contact main
+        action: create
+        model: res.partner
+        save_as: b_contact_main
+        values:
+          name: AMB Contact main
+      - step: Create the student main
+        action: create
+        model: school_student
+        save_as: b_student_main
+        values:
+          name: AMB Student main
+          code: AMBSTMAIN
+          contact_id: "REC: b_contact_main.id"
+          school_id: "REC: b_school.id"
+      - step: Create the payment template with two terms
+        action: create
+        model: school_enrollment_payment_template
+        save_as: b_template
+        values:
+          customer_invoice_type_id: "REC: b_ci_type.id"
+          name: AMB Payment Template
+          code: AMBPMT
+          school_id: "REC: b_school.id"
+          grade_id: "REC: b_grade.id"
+          academic_term_id: "REC: b_term_1.id"
+          term_ids:
+            - - 0
+              - 0
+              - name: Term 1
+                sequence: 10
+                detail_ids:
+                  - - 0
+                    - 0
+                    - product_id: "REC: b_product_a.id"
+                      name: AMB Fee Term 1
+                      account_id: "REC: b_income_account.id"
+                      uom_quantity: 1.0
+                      uom_id: "REF: uom.product_uom_unit"
+                      price_unit: 1000000.0
+            - - 0
+              - 0
+              - name: Term 2
+                sequence: 20
+                detail_ids:
+                  - - 0
+                    - 0
+                    - product_id: "REC: b_product_a.id"
+                      name: AMB Fee Term 2
+                      account_id: "REC: b_income_account.id"
+                      uom_quantity: 1.0
+                      uom_id: "REF: uom.product_uom_unit"
+                      price_unit: 500000.0
+      - step: Create the enrollment
+        action: create
+        model: school_enrollment
+        save_as: b_enrollment
+        values:
+          academic_year_id: "REC: b_academic_year.id"
+          academic_term_id: "REC: b_term_1.id"
+          school_id: "REC: b_school.id"
+          grade_id: "REC: b_grade.id"
+          grade_class_id: "REC: b_grade_class.id"
+          student_id: "REC: b_student_main.id"
+          user_id: "REF: base.user_admin"
+          currency_id: "REC: company.currency_id.id"
+          receivable_journal_id: "REC: b_journal.id"
+          receivable_account_id: "REC: b_rec_account.id"
+          customer_invoice_type_id: "REC: b_ci_type.id"
+          auto_confirm_customer_invoice: false
+          date: "2024-07-01"
+          payment_template_id: "REC: b_template.id"
+          pricelist_id: "REC: b_pricelist.id"
+      - step: Confirm the enrollment
+        action: call
+        target: b_enrollment
+        method: action_confirm
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: confirm
+      - step: Compute payment
+        action: call
+        target: b_enrollment
+        method: action_compute_payment
+        as_user: base.user_admin
+      - step: Assert enrollment is confirm before approve (T-04)
+        action: assert
+        target: b_enrollment
+        asserts:
+          state:
+            type: value
+            expected: confirm
+      - step: Approve the enrollment, reaching Open
+        action: call
+        target: b_enrollment
+        method: action_approve_approval
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: open
+      - step: Get the first payment term
+        action: search
+        model: school_enrollment_payment_term
+        domain:
+          - - enrollment_id
+            - "="
+            - "REC: b_enrollment.id"
+          - - sequence
+            - "="
+            - 10
+        save_as: b_term_one
+        expect_count: 1
+      - step: Mark the first term as manual
+        action: call
+        target: b_term_one
+        method: action_mark_as_manual
+        asserts:
+          state:
+            type: value
+            expected: manual
+      - step: Get the second payment term
+        action: search
+        model: school_enrollment_payment_term
+        domain:
+          - - enrollment_id
+            - "="
+            - "REC: b_enrollment.id"
+          - - sequence
+            - "="
+            - 20
+        save_as: b_term_two
+        expect_count: 1
+      - step: Invoice the second term
+        action: call
+        target: b_term_two
+        method: action_create_invoice
+      - step: Get the invoiced detail
+        action: search
+        model: school_enrollment_payment_term_detail
+        domain:
+          - - term_id
+            - "="
+            - "REC: b_term_two.id"
+        save_as: b_invoiced_detail
+        expect_count: 1
+      - step: Finish the enrollment
+        action: call
+        target: b_enrollment
+        method: action_done
+        asserts:
+          state:
+            type: value
+            expected: done
+      - step: Create term B Extra Term
+        action: create
+        model: school_enrollment_payment_term
+        save_as: b_te
+        values:
+          enrollment_id: "REC: b_enrollment.id"
+          name: B Extra Term
+          sequence: 30
+      - step: Create detail B Fee 1 (void)
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: b_d1
+        values:
+          term_id: "REC: b_te.id"
+          product_id: "REC: b_product_a.id"
+          name: B Fee 1 (void)
+          account_id: "REC: b_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 40000.0
+      - step: Create detail B Fee 2 (reprice)
+        action: create
+        model: school_enrollment_payment_term_detail
+        save_as: b_d2
+        values:
+          term_id: "REC: b_te.id"
+          product_id: "REC: b_product_a.id"
+          name: B Fee 2 (reprice)
+          account_id: "REC: b_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 30000.0
+      - step: Create amendment document 1 (done enrollment)
+        action: create
+        model: school_payment_term_amendment
+        save_as: b_doc1
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: b_enrollment.id"
+          reason_id: "REC: b_reason.id"
+      - step: Create line void
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: b_l1
+        values:
+          amendment_id: "REC: b_doc1.id"
+          type: void
+          term_id: "REC: b_te.id"
+          detail_id: "REC: b_d1.id"
+      - step: Create line change price
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: b_l2
+        values:
+          amendment_id: "REC: b_doc1.id"
+          type: change_price
+          term_id: "REC: b_te.id"
+          detail_id: "REC: b_d2.id"
+          price_unit_before: 30000.0
+          price_unit: 45000.0
+      - step: Create line add detail
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: b_l3
+        values:
+          amendment_id: "REC: b_doc1.id"
+          type: add_detail
+          term_id: "REC: b_te.id"
+          product_id: "REC: b_product_b.id"
+          name: Added fee
+          account_id: "REC: b_income_account.id"
+          uom_id: "REF: uom.product_uom_unit"
+          uom_quantity: 1.0
+          price_unit: 10000.0
+      - step: Confirm the amendment of the done enrollment
+        action: call
+        target: b_doc1
+        method: action_confirm
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: confirm
+      - step: Approve the amendment, reaching Done
+        action: call
+        target: b_doc1
+        method: action_approve_approval
+        as_user: base.user_admin
+        asserts:
+          state:
+            type: value
+            expected: done
+      - step: Assert the voided detail
+        action: assert
+        target: b_d1
+        asserts:
+          voided:
+            type: value
+            expected: true
+          price_unit:
+            type: value
+            expected: 40000.0
+      - step: Assert the repriced detail
+        action: assert
+        target: b_d2
+        asserts:
+          price_unit:
+            type: value
+            expected: 45000.0
+      - step: Assert the extra term total
+        action: assert
+        target: b_te
+        asserts:
+          amount_total:
+            type: value
+            expected: 55000.0
+      - step: Assert the enrollment stays done
+        action: assert
+        target: b_enrollment
+        asserts:
+          state:
+            type: value
+            expected: done
+      - step: Assert the added detail is locked
+        action: assert
+        target: b_l3
+        asserts:
+          created_detail_id.locked:
+            type: value
+            expected: true
+      - step: Create amendment document 2 (invoiced term)
+        action: create
+        model: school_payment_term_amendment
+        save_as: b_doc2
+        values:
+          user_id: "REF: base.user_admin"
+          enrollment_id: "REC: b_enrollment.id"
+          reason_id: "REC: b_reason.id"
+      - step: Create line void an invoiced detail
+        action: create
+        model: school_payment_term_amendment_line
+        save_as: b_l4
+        values:
+          amendment_id: "REC: b_doc2.id"
+          type: void
+          term_id: "REC: b_term_two.id"
+          detail_id: "REC: b_invoiced_detail.id"
+      - step: Confirm must be rejected -- term already invoiced
+        action: call
+        target: b_doc2
+        method: action_confirm
+        as_user: base.user_admin
+        expect_error:
+          type: UserError
+          message_contains: already has a Customer Invoice
