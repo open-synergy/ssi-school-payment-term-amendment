@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [ssi_school_payment_term_amendment](ssi_school_payment_term_amendment/) | 14.0.1.0.1 |  | School Payment Term Amendment
+[ssi_school_payment_term_amendment_operating_unit](ssi_school_payment_term_amendment_operating_unit/) | 14.0.1.0.1 |  | School Payment Term Amendment - Operating Unit
 
 [//]: # (end addons)
 

@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-ssi_school_payment_term_amendment',
+        'odoo14-addon-ssi_school_payment_term_amendment_operating_unit',
     ],
     classifiers=[
         'Programming Language :: Python',
