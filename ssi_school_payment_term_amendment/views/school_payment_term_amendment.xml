@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="school_payment_term_amendment_view_search" model="ir.ui.view">
+    <field name="name">school_payment_term_amendment - search</field>
+    <field name="model">school_payment_term_amendment</field>
+    <field
+            name="inherit_id"
+            ref="ssi_transaction_mixin.mixin_transaction_view_search"
+        />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//search" position="inside">
+                <field name="student_id" />
+                <field name="enrollment_id" />
+                <field name="reason_id" />
+                <field name="academic_year_id" />
+                <field name="academic_term_id" />
+                <group expand="0" string="Group By">
+                    <filter
+                            name="group_by_reason_id"
+                            string="Reason"
+                            context="{'group_by': 'reason_id'}"
+                        />
+                    <filter
+                            name="group_by_academic_year_id"
+                            string="Academic Year"
+                            context="{'group_by': 'academic_year_id'}"
+                        />
+                    <filter
+                            name="group_by_academic_term_id"
+                            string="Academic Term"
+                            context="{'group_by': 'academic_term_id'}"
+                        />
+                    <filter
+                            name="group_by_student_id"
+                            string="Student"
+                            context="{'group_by': 'student_id'}"
+                        />
+                </group>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_payment_term_amendment_view_tree" model="ir.ui.view">
+    <field name="name">school_payment_term_amendment - tree</field>
+    <field name="model">school_payment_term_amendment</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="ssi_transaction_mixin.mixin_transaction_view_tree" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="date" />
+                <field name="student_id" />
+                <field name="enrollment_id" />
+                <field name="reason_id" />
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_payment_term_amendment_view_form" model="ir.ui.view">
+    <field name="name">school_payment_term_amendment - form</field>
+    <field name="model">school_payment_term_amendment</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="ssi_transaction_mixin.mixin_transaction_view_form" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="enrollment_id" />
+                <field name="student_id" />
+                <field name="reason_id" />
+            </xpath>
+            <xpath expr="//group[@name='header_right']" position="inside">
+                <field name="academic_year_id" />
+                <field name="academic_term_id" />
+                <field name="date" />
+            </xpath>
+            <xpath expr="//page[1]" position="before">
+                <page name="amendment" string="Amendment Detail">
+                    <field name="line_ids">
+                        <tree editable="bottom">
+                            <field name="allowed_term_ids" invisible="1" />
+                            <field name="allowed_detail_ids" invisible="1" />
+                            <field name="allowed_product_ids" invisible="1" />
+                            <field name="type" />
+                            <field
+                                    name="term_id"
+                                    domain="[('id','in',allowed_term_ids)]"
+                                    attrs="{'readonly': [('type', '=', 'add_term')]}"
+                                />
+                            <field
+                                    name="detail_id"
+                                    domain="[('id','in',allowed_detail_ids)]"
+                                    attrs="{'readonly': [('type', 'not in', ['void', 'change_price'])]}"
+                                />
+                            <field
+                                    name="price_unit_before"
+                                    readonly="1"
+                                    force_save="1"
+                                />
+                            <field
+                                    name="new_term_line_id"
+                                    domain="[('amendment_id','=',parent.id),('type','=','add_term')]"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="term_name"
+                                    attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                />
+                            <field
+                                    name="term_sequence"
+                                    attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                />
+                            <field
+                                    name="date_invoice"
+                                    attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                />
+                            <field
+                                    name="date_due"
+                                    attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                />
+                            <field
+                                    name="product_id"
+                                    domain="[('id','in',allowed_product_ids)]"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="name"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="usage_id"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="account_id"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="uom_id"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="uom_quantity"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="tax_ids"
+                                    widget="many2many_tags"
+                                    attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                />
+                            <field
+                                    name="price_unit"
+                                    attrs="{'readonly': [('type', 'in', ['void', 'add_term'])]}"
+                                />
+                            <field name="created_term_id" readonly="1" />
+                            <field name="created_detail_id" readonly="1" />
+                        </tree>
+                        <form>
+                            <group name="line_target" string="Target">
+                                <field name="allowed_term_ids" invisible="1" />
+                                <field name="allowed_detail_ids" invisible="1" />
+                                <field name="allowed_product_ids" invisible="1" />
+                                <field name="type" />
+                                <field
+                                        name="term_id"
+                                        domain="[('id','in',allowed_term_ids)]"
+                                        attrs="{'readonly': [('type', '=', 'add_term')]}"
+                                    />
+                                <field
+                                        name="detail_id"
+                                        domain="[('id','in',allowed_detail_ids)]"
+                                        attrs="{'readonly': [('type', 'not in', ['void', 'change_price'])]}"
+                                    />
+                                <field name="price_unit_before" readonly="1" />
+                                <field
+                                        name="new_term_line_id"
+                                        domain="[('amendment_id','=',parent.id),('type','=','add_term')]"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                            </group>
+                            <group name="line_new_term" string="New Term">
+                                <field
+                                        name="term_name"
+                                        attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                    />
+                                <field
+                                        name="term_sequence"
+                                        attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                    />
+                                <field
+                                        name="date_invoice"
+                                        attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                    />
+                                <field
+                                        name="date_due"
+                                        attrs="{'readonly': [('type', '!=', 'add_term')]}"
+                                    />
+                            </group>
+                            <group name="line_new_detail" string="New Detail">
+                                <field
+                                        name="product_id"
+                                        domain="[('id','in',allowed_product_ids)]"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                                <field
+                                        name="name"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                                <field
+                                        name="usage_id"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                                <field
+                                        name="account_id"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                                <field
+                                        name="uom_id"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                                <field
+                                        name="uom_quantity"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                                <field
+                                        name="tax_ids"
+                                        widget="many2many_tags"
+                                        attrs="{'readonly': [('type', '!=', 'add_detail')]}"
+                                    />
+                                <field
+                                        name="price_unit"
+                                        attrs="{'readonly': [('type', 'in', ['void', 'add_term'])]}"
+                                    />
+                            </group>
+                            <group name="line_result" string="Result">
+                                <field name="created_term_id" readonly="1" />
+                                <field name="created_detail_id" readonly="1" />
+                            </group>
+                        </form>
+                    </field>
+                    <group name="amendment_note" string="Note">
+                        <field name="note" nolabel="1" />
+                    </group>
+                </page>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_payment_term_amendment_action" model="ir.actions.act_window">
+    <field name="name">Payment Term Amendments</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">school_payment_term_amendment</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="school_payment_term_amendment_menu"
+        name="Payment Term Amendments"
+        parent="ssi_school.menu_school_student_activity"
+        action="school_payment_term_amendment_action"
+        groups="school_payment_term_amendment_viewer_group"
+        sequence="26"
+    />
+
+</odoo>

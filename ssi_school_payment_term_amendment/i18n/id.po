@@ -1,0 +1,1145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_school_payment_term_amendment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Confirm/Done payment term amendment\n"
+"Database ID: %s\n"
+"Problem: %s\n"
+"Solution: %s\n"
+msgstr ""
+"\n"
+"Konteks: Konfirmasi/Selesaikan perubahan termin pembayaran\n"
+"ID Basis Data: %s\n"
+"Masalah: %s\n"
+"Solusi: %s\n"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Payment term amendment %s applied the following:<ul>%s</ul>"
+msgstr "Perubahan termin pembayaran %s menerapkan hal berikut:<ul>%s</ul>"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Select an enrollment in state Open or Done"
+msgstr "Pilih pendaftaran berstatus Terbuka atau Selesai"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Document has no line"
+msgstr "Dokumen tidak memiliki baris"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Add at least one line before continuing"
+msgstr "Tambahkan setidaknya satu baris sebelum melanjutkan"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Select a payment term of the same enrollment"
+msgstr "Pilih termin pembayaran dari pendaftaran yang sama"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Cancel this document; a term already invoiced can no longer be amended"
+msgstr "Batalkan dokumen ini; termin yang sudah difaktur tidak dapat diubah lagi"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Select a detail that belongs to the selected term"
+msgstr "Pilih detail yang berasal dari termin terpilih"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Cancel this document; an already-invoiced line can no longer be amended"
+msgstr "Batalkan dokumen ini; baris yang sudah difaktur tidak dapat diubah lagi"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Select a detail that is not already voided"
+msgstr "Pilih detail yang belum dibatalkan"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Select an Add Term line of this same document"
+msgstr "Pilih baris Tambah Termin dari dokumen yang sama"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Enrollment '%s' is neither Open nor Done"
+msgstr "Pendaftaran '%s' tidak berstatus Terbuka maupun Selesai"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Keep only one Void/Change Price line per detail"
+msgstr "Sisakan hanya satu baris Batalkan/Ubah Harga per detail"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+msgid "Add at least one Add Detail line pointing at the new term"
+msgstr "Tambahkan setidaknya satu baris Tambah Detail yang menunjuk ke termin baru"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "<li>%s: %s</li>"
+msgstr "<li>%s: %s</li>"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Payment Term '%s' does not belong to Enrollment '%s'"
+msgstr "Termin Pembayaran '%s' bukan milik Pendaftaran '%s'"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Payment Term '%s' already has a Customer Invoice"
+msgstr "Termin Pembayaran '%s' sudah memiliki Faktur Pelanggan"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Detail '%s' does not belong to Payment Term '%s'"
+msgstr "Detail '%s' bukan milik Termin Pembayaran '%s'"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Detail '%s' already has a Customer Invoice Line"
+msgstr "Detail '%s' sudah memiliki Baris Faktur Pelanggan"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Detail '%s' is already voided"
+msgstr "Detail '%s' sudah dibatalkan"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Line '%s' does not point at a New Term line of this document"
+msgstr "Baris '%s' tidak menunjuk ke baris Termin Baru pada dokumen ini"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "Detail '%s' appears on more than one line"
+msgstr "Detail '%s' muncul pada lebih dari satu baris"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment.py:0
+#, python-format
+msgid "New term '%s' has no Add Detail line"
+msgstr "Termin baru '%s' tidak memiliki baris Tambah Detail"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment_line.py:0
+msgid "Payment Term and Detail are required"
+msgstr "Termin Pembayaran dan Detail wajib diisi"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Set payment term amendment line\n"
+"Database ID: %s\n"
+"Problem: %s\n"
+"Solution: Fill the fields required by the selected operation\n"
+msgstr ""
+"\n"
+"Konteks: Atur baris perubahan termin pembayaran\n"
+"ID Basis Data: %s\n"
+"Masalah: %s\n"
+"Solusi: Isi kolom yang diwajibkan oleh operasi terpilih\n"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Set payment term amendment line price\n"
+"Database ID: %s\n"
+"Problem: Price Unit %s is negative\n"
+"Solution: Enter a price greater than or equal to zero\n"
+msgstr ""
+"\n"
+"Konteks: Atur harga baris perubahan termin pembayaran\n"
+"ID Basis Data: %s\n"
+"Masalah: Harga Satuan %s bernilai negatif\n"
+"Solusi: Masukkan harga yang lebih besar dari atau sama dengan nol\n"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment_line.py:0
+msgid "Product, Account and UoM are required"
+msgstr "Produk, Akun, dan Satuan wajib diisi"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment_line.py:0
+msgid "New Term Name is required"
+msgstr "Nama Termin Baru wajib diisi"
+
+#. module: ssi_school_payment_term_amendment
+#: code:addons/ssi_school_payment_term_amendment/models/school_payment_term_amendment_line.py:0
+msgid "Set exactly one of Payment Term and New Term"
+msgstr "Isi tepat satu dari Termin Pembayaran dan Termin Baru"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model,name:ssi_school_payment_term_amendment.model_school_payment_term_amendment
+#: model:ir.module.category,name:ssi_school_payment_term_amendment.school_payment_term_amendment_workflow_module_category
+#: model:ir.module.category,name:ssi_school_payment_term_amendment.school_payment_term_amendment_data_ownership_module_category
+msgid "School Payment Term Amendment"
+msgstr "Perubahan Termin Pembayaran Sekolah"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model,name:ssi_school_payment_term_amendment.model_school_payment_term_amendment_line
+msgid "School Payment Term Amendment Line"
+msgstr "Baris Perubahan Termin Pembayaran Sekolah"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model,name:ssi_school_payment_term_amendment.model_school_payment_term_amendment_reason
+msgid "School Payment Term Amendment Reason"
+msgstr "Alasan Perubahan Termin Pembayaran Sekolah"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_enrollment__amendment_count
+msgid "Payment Term Amendment Count"
+msgstr "Jumlah Perubahan Termin Pembayaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_enrollment__amendment_ids
+#: model:ir.ui.menu,name:ssi_school_payment_term_amendment.school_payment_term_amendment_menu
+msgid "Payment Term Amendments"
+msgstr "Perubahan Termin Pembayaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__academic_term_id
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_search
+msgid "Academic Term"
+msgstr "Periode Akademik"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__academic_year_id
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_search
+msgid "Academic Year"
+msgstr "Tahun Ajaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__currency_id
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__currency_id
+msgid "Currency"
+msgstr "Mata Uang"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__date
+msgid "Date"
+msgstr "Tanggal"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__enrollment_id
+msgid "Enrollment"
+msgstr "Pendaftaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__line_ids
+msgid "Line"
+msgstr "Baris"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__note
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_form
+msgid "Note"
+msgstr "Catatan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__reason_id
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_search
+msgid "Reason"
+msgstr "Alasan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__student_id
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_search
+msgid "Student"
+msgstr "Siswa"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__allowed_detail_ids
+msgid "Allowed Details"
+msgstr "Detail yang Diizinkan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__allowed_product_ids
+msgid "Allowed Products"
+msgstr "Produk yang Diizinkan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__allowed_term_ids
+msgid "Allowed Payment Terms"
+msgstr "Termin Pembayaran yang Diizinkan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__amendment_id
+msgid "Amendment"
+msgstr "Perubahan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__created_detail_id
+msgid "Created Detail"
+msgstr "Detail yang Dibuat"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__created_term_id
+msgid "Created Term"
+msgstr "Termin yang Dibuat"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__date_due
+msgid "Estimated Due Date"
+msgstr "Perkiraan Tanggal Jatuh Tempo"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__date_invoice
+msgid "Estimated Invoice Date"
+msgstr "Perkiraan Tanggal Faktur"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__detail_id
+msgid "Detail"
+msgstr "Detail"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__detail_product_id
+msgid "Detail Product"
+msgstr "Produk Detail"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__new_term_line_id
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_form
+msgid "New Term"
+msgstr "Termin Baru"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__price_unit_before
+msgid "Price Before"
+msgstr "Harga Sebelumnya"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__term_id
+msgid "Payment Term"
+msgstr "Termin Pembayaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__term_name
+msgid "New Term Name"
+msgstr "Nama Termin Baru"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__term_sequence
+msgid "New Term Sequence"
+msgstr "Urutan Termin Baru"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__type
+msgid "Operation"
+msgstr "Operasi"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__active_approval_ids
+msgid "Active Approvals"
+msgstr "Persetujuan Aktif"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__active_approver_partner_ids
+msgid "Active Partners"
+msgstr "Mitra Aktif"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__active_approver_user_ids
+msgid "Active Users"
+msgstr "Pengguna Aktif"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Batas Waktu Aktivitas Berikutnya"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekorasi Pengecualian Aktivitas"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_exception_icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_ids
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_ids
+msgid "Activities"
+msgstr "Aktivitas"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_state
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_state
+msgid "Activity State"
+msgstr "Status Aktivitas"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_summary
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_summary
+msgid "Next Activity Summary"
+msgstr "Ringkasan Aktivitas Berikutnya"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikon Jenis Aktivitas"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_type_id
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_type_id
+msgid "Next Activity Type"
+msgstr "Jenis Aktivitas Berikutnya"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_user_id
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_user_id
+msgid "Responsible User"
+msgstr "Pengguna Penanggung Jawab"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__allowed_policy_template_ids
+msgid "Allowed Policy Templates"
+msgstr "Templat Kebijakan yang Diizinkan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__approval_ids
+msgid "Approvals"
+msgstr "Persetujuan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__approval_template_id
+msgid "Approval Template"
+msgstr "Templat Persetujuan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__approve_ok
+msgid "Can Approve"
+msgstr "Dapat Menyetujui"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__approved
+msgid "Approved"
+msgstr "Disetujui"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__cancel_ok
+msgid "Can Cancel"
+msgstr "Dapat Membatalkan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__cancel_reason_id
+msgid "Cancel Reason"
+msgstr "Alasan Pembatalan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__company_currency_id
+msgid "Company Currency"
+msgstr "Mata Uang Perusahaan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__company_partner_id
+msgid "Company Partner"
+msgstr "Mitra Perusahaan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__confirm_ok
+msgid "Can Confirm"
+msgstr "Dapat Mengonfirmasi"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__done_ok
+msgid "Can Finished"
+msgstr "Dapat Diselesaikan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__manual_number_ok
+msgid "Can Input Manual Document Number"
+msgstr "Dapat Memasukkan Nomor Dokumen Manual"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_attachment_count
+msgid "Attachment Count"
+msgstr "Jumlah Lampiran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Pengikut (Saluran)"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_follower_ids
+msgid "Followers"
+msgstr "Pengikut"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_has_error
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_has_error
+msgid "Message Delivery error"
+msgstr "Kesalahan Pengiriman Pesan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_has_error_counter
+msgid "Number of errors"
+msgstr "Jumlah kesalahan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_ids
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_ids
+msgid "Messages"
+msgstr "Pesan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_is_follower
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_is_follower
+msgid "Is Follower"
+msgstr "Adalah Pengikut"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Lampiran Utama"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_needaction
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_needaction
+msgid "Action Needed"
+msgstr "Perlu Tindakan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Jumlah Tindakan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pengikut (Mitra)"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_unread
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_unread
+msgid "Unread Messages"
+msgstr "Pesan yang Belum Dibaca"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Penghitung Pesan yang Belum Dibaca"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Batas Waktu Aktivitas Saya"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__name
+msgid "# Document"
+msgstr "No. Dokumen"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__need_validation
+msgid "Need Validation"
+msgstr "Perlu Validasi"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__next_approval_ids
+msgid "Next Approvals"
+msgstr "Persetujuan Berikutnya"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__policy_template_id
+msgid "Policy Template"
+msgstr "Templat Kebijakan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__reject_ok
+msgid "Can Reject"
+msgstr "Dapat Menolak"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__rejected
+msgid "Rejected"
+msgstr "Ditolak"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__restart_approval_ok
+msgid "Can Restart Approval"
+msgstr "Dapat Memulai Ulang Persetujuan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__restart_ok
+msgid "Can Restart"
+msgstr "Dapat Memulai Ulang"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__reviewer_id
+msgid "Reviewer"
+msgstr "Pemeriksa"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__state
+msgid "State"
+msgstr "Status"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__user_id
+msgid "Responsible"
+msgstr "Penanggung Jawab"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment__website_message_ids
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__website_message_ids
+msgid "Website Messages"
+msgstr "Pesan Situs Web"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__active
+msgid "Active"
+msgstr "Aktif"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__code
+msgid "Code"
+msgstr "Kode"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,field_description:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__name
+msgid "Name"
+msgstr "Nama"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_enrollment__amendment_count
+msgid "Number of payment term amendment documents targeting this enrollment, backing the Amendments smart button."
+msgstr "Jumlah dokumen perubahan termin pembayaran yang menyasar pendaftaran ini, mendukung tombol pintar Perubahan."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_enrollment__amendment_ids
+msgid "Payment term amendment documents that target this enrollment."
+msgstr "Dokumen perubahan termin pembayaran yang menyasar pendaftaran ini."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__academic_term_id
+msgid "The academic term of the enrollment."
+msgstr "Periode akademik dari pendaftaran."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__academic_year_id
+msgid "The academic year of the enrollment."
+msgstr "Tahun ajaran dari pendaftaran."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__currency_id
+msgid "The billing currency, taken from the enrollment."
+msgstr "Mata uang penagihan, diambil dari pendaftaran."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__date
+msgid "Date this payment term amendment document was created."
+msgstr "Tanggal dokumen perubahan termin pembayaran ini dibuat."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__enrollment_id
+msgid "The open or done enrollment whose not-yet-invoiced payment terms are amended. One document amends exactly one enrollment."
+msgstr "Pendaftaran berstatus terbuka atau selesai yang termin pembayarannya yang belum ditagih diubah. Satu dokumen mengubah tepat satu pendaftaran."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__line_ids
+msgid "The individual changes this amendment applies on Done."
+msgstr "Perubahan-perubahan yang diterapkan oleh perubahan ini saat Selesai."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__note
+msgid "Optional free-form explanation for this amendment."
+msgstr "Penjelasan bebas (opsional) untuk perubahan ini."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__reason_id
+msgid "Why the payment terms of this enrollment are amended."
+msgstr "Alasan termin pembayaran pendaftaran ini diubah."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__student_id
+msgid "The student being billed, taken from the enrollment."
+msgstr "Siswa yang ditagih, diambil dari pendaftaran."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__allowed_detail_ids
+msgid "Detail lines of the selected term that are not invoiced and not voided, eligible for Void Detail/Change Price."
+msgstr "Baris detail dari termin terpilih yang belum difaktur dan belum dibatalkan, yang dapat dipilih untuk Batalkan Detail/Ubah Harga."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__allowed_product_ids
+msgid "Products allowed on an added detail, per the payment template."
+msgstr "Produk yang diizinkan pada detail yang ditambahkan, menurut templat pembayaran."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__allowed_term_ids
+msgid "Payment terms of the enrollment that have no customer invoice yet, eligible as the target of this line."
+msgstr "Termin pembayaran pendaftaran yang belum memiliki faktur pelanggan, yang dapat menjadi sasaran baris ini."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__amendment_id
+msgid "The payment term amendment document that owns this line."
+msgstr "Dokumen perubahan termin pembayaran yang memiliki baris ini."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__created_detail_id
+msgid "The detail created on Done by an Add Detail line."
+msgstr "Detail yang dibuat saat Selesai oleh baris Tambah Detail."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__created_term_id
+msgid "The payment term created on Done by an Add Term line."
+msgstr "Termin pembayaran yang dibuat saat Selesai oleh baris Tambah Termin."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__currency_id
+msgid "The billing currency, taken from the amendment document."
+msgstr "Mata uang penagihan, diambil dari dokumen perubahan."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__date_due
+msgid "Estimated due date of the term created by Add Term."
+msgstr "Perkiraan tanggal jatuh tempo dari termin yang dibuat oleh Tambah Termin."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__date_invoice
+msgid "Estimated invoice date of the term created by Add Term."
+msgstr "Perkiraan tanggal faktur dari termin yang dibuat oleh Tambah Termin."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__detail_id
+msgid "The payment term detail this line voids or reprices. Required for Void Detail and Change Price."
+msgstr "Detail termin pembayaran yang dibatalkan atau diubah harganya oleh baris ini. Wajib untuk Batalkan Detail dan Ubah Harga."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__detail_product_id
+msgid "The product of the targeted detail, shown for reference."
+msgstr "Produk dari detail sasaran, ditampilkan sebagai rujukan."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__new_term_line_id
+msgid "The Add Term line of this same document whose new term receives this detail. The Add Term line has to be saved first."
+msgstr "Baris Tambah Termin pada dokumen yang sama yang termin barunya menerima detail ini. Baris Tambah Termin harus disimpan terlebih dahulu."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__price_unit_before
+msgid "Snapshot of the targeted detail's unit price at the moment it was selected, filled automatically by onchange, so the amendment keeps a trace of the previous price."
+msgstr "Cuplikan harga satuan detail sasaran saat dipilih, terisi otomatis oleh onchange, sehingga perubahan ini menyimpan jejak harga sebelumnya."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__term_id
+msgid "The not-yet-invoiced payment term this line targets. Required for Void Detail and Change Price; for Add Detail either this or New Term must be set."
+msgstr "Termin pembayaran yang belum difaktur yang menjadi sasaran baris ini. Wajib untuk Batalkan Detail dan Ubah Harga; untuk Tambah Detail isi ini atau Termin Baru."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__term_name
+msgid "Name of the payment term created by an Add Term line."
+msgstr "Nama termin pembayaran yang dibuat oleh baris Tambah Termin."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__term_sequence
+msgid "Order of the payment term created by an Add Term line."
+msgstr "Urutan termin pembayaran yang dibuat oleh baris Tambah Termin."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_line__type
+msgid "What this line does on Done: void a detail, change the unit price of a detail, add a detail to a term, or add a new payment term."
+msgstr "Yang dilakukan baris ini saat Selesai: membatalkan detail, mengubah harga satuan detail, menambah detail pada termin, atau menambah termin pembayaran baru."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__active_approver_user_ids
+msgid "Users that can approve/reject document"
+msgstr "Pengguna yang dapat menyetujui/menolak dokumen"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Jenis aktivitas pengecualian yang tercatat."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_exception_icon
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikon untuk menandai aktivitas pengecualian."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_state
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Status berdasarkan aktivitas\n"
+"Terlambat: Batas waktu sudah lewat\n"
+"Hari Ini: Tanggal aktivitas hari ini\n"
+"Terjadwal: Aktivitas mendatang."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__activity_type_icon
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ikon Font Awesome, misalnya fa-tasks"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__approval_template_id
+msgid "Approval Configuration"
+msgstr "Konfigurasi Persetujuan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__approve_ok
+msgid ""
+"Approve policy\n"
+"\n"
+"* If active user can see and execute 'Approve' button"
+msgstr ""
+"Kebijakan setujui\n"
+"\n"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Setujui'"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__cancel_ok
+msgid ""
+"Cancel policy\n"
+"\n"
+"* If active user can see and execute 'Cancel' button"
+msgstr ""
+"Kebijakan batal\n"
+"\n"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Batal'"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__company_id
+msgid ""
+"Company that own the document\n"
+"\n"
+"* Automatically filled with user's company.\n"
+"  Default company can be changed"
+msgstr ""
+"Perusahaan pemilik dokumen\n"
+"\n"
+"* Otomatis diisi dengan perusahaan pengguna.\n"
+"  Perusahaan default dapat diubah"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__confirm_ok
+msgid ""
+"Confirm policy\n"
+"\n"
+"* If active user can see and execute 'Confirm' button"
+msgstr ""
+"Kebijakan konfirmasi\n"
+"\n"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Konfirmasi'"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__done_ok
+msgid ""
+"Done policy\n"
+"\n"
+"* If active user can see and execute 'Done' button"
+msgstr ""
+"Kebijakan selesai\n"
+"\n"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Selesai'"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__manual_number_ok
+msgid ""
+"Manual number assignment policy\n"
+"\n"
+"* If active user can edit document number"
+msgstr ""
+"Kebijakan penomoran manual\n"
+"\n"
+"* Jika aktif, pengguna dapat mengubah nomor dokumen"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_has_error
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_has_error_counter
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Jumlah pesan dengan kesalahan pengiriman"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_needaction
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_unread
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_needaction
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_needaction_counter
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Jumlah pesan yang memerlukan tindakan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__message_unread_counter
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Jumlah pesan yang belum dibaca"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__name
+msgid ""
+"Transaction/document number\n"
+"\n"
+"* Unique indentifer of transaction\n"
+"* Leave '/' to automatically generate number\n"
+"* Change '/' into any number/identifier to manually assign number.\n"
+"  Manual number assignment can be done in 'Draft' state\n"
+"  Only user with 'Can Manualy Assign Number' policy can manually assign number.\n"
+"* Transaction with number other than '/' can not be deleted."
+msgstr ""
+"Nomor transaksi/dokumen\n"
+"\n"
+"* Pengenal unik transaksi\n"
+"* Biarkan '/' untuk menghasilkan nomor secara otomatis\n"
+"* Ubah '/' menjadi nomor/pengenal apa pun untuk menetapkan nomor secara manual.\n"
+"  Penetapan nomor manual dapat dilakukan dalam status 'Draf'\n"
+"  Hanya pengguna dengan kebijakan 'Dapat Memasukkan Nomor Dokumen Manual' yang dapat menetapkan nomor secara manual.\n"
+"* Transaksi dengan nomor selain '/' tidak dapat dihapus."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__reject_ok
+msgid ""
+"Reject policy\n"
+"\n"
+"* If active user can see and execute 'Reject' button"
+msgstr ""
+"Kebijakan tolak\n"
+"\n"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Tolak'"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__restart_approval_ok
+msgid ""
+"Restart approval policy\n"
+"\n"
+"* If active user can see and execute 'Restart Approval' button"
+msgstr ""
+"Kebijakan mulai ulang persetujuan\n"
+"\n"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Mulai Ulang Persetujuan'"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__restart_ok
+msgid ""
+"Restart policy\n"
+"\n"
+"* If active user can see and execute 'Restart' button"
+msgstr ""
+"Kebijakan mulai ulang\n"
+"\n"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Mulai Ulang'"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__reviewer_id
+msgid ""
+"User that responsible to review document\n"
+"\n"
+"* Unless it configured to approve reviewer does not equal to approver"
+msgstr ""
+"Pengguna yang bertanggung jawab memeriksa dokumen\n"
+"\n"
+"* Kecuali dikonfigurasi untuk menyetujui, pemeriksa tidak sama dengan penyetuju"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__user_id
+msgid ""
+"User that responsible for document\n"
+"\n"
+"* Create user can be different with responsible user\n"
+"* Automatically filled with user that initiate document creation.\n"
+"  Default responsible can be changed."
+msgstr ""
+"Pengguna yang bertanggung jawab atas dokumen\n"
+"\n"
+"* Pengguna pembuat dapat berbeda dengan pengguna penanggung jawab\n"
+"* Otomatis diisi dengan pengguna yang memulai pembuatan dokumen.\n"
+"  Penanggung jawab bawaan dapat diubah."
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment__website_message_ids
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__website_message_ids
+msgid "Website communication history"
+msgstr "Riwayat komunikasi situs web"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__active
+msgid ""
+"Master data status\n"
+"\n"
+"* Inactive data can not be selected when creating new transaction\n"
+"* Transaction with inactive master data can still be viewed\n"
+"* Set master data as inactive if master data no longger needed,\n"
+"but master data already used on transaction"
+msgstr ""
+"Status data master\n"
+"\n"
+"* Data nonaktif tidak dapat dipilih saat membuat transaksi baru\n"
+"* Transaksi dengan data master nonaktif tetap dapat dilihat\n"
+"* Atur data master sebagai nonaktif jika data master tidak lagi diperlukan,\n"
+"tetapi data master sudah digunakan pada transaksi"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields,help:ssi_school_payment_term_amendment.field_school_payment_term_amendment_reason__code
+msgid ""
+"Master data unique identifier.\n"
+"\n"
+"* Fill with '/' if You do not need unique identifier\n"
+"* Click 'Generate Code' button to automatically assign code.\n"
+"  Sequence template mush be set to perform this action\n"
+"  Only master data with '/' code will be assign automatic code"
+msgstr ""
+"Pengenal unik data master.\n"
+"\n"
+"* Isi dengan '/' jika Anda tidak memerlukan pengenal unik\n"
+"* Klik tombol 'Buat Kode' untuk menetapkan kode secara otomatis.\n"
+"  Templat urutan harus diatur untuk menjalankan tindakan ini\n"
+"  Hanya data master dengan kode '/' yang akan diberi kode otomatis"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields.selection,name:ssi_school_payment_term_amendment.selection__school_payment_term_amendment_line__type__add_detail
+msgid "Add Detail"
+msgstr "Tambah Detail"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields.selection,name:ssi_school_payment_term_amendment.selection__school_payment_term_amendment_line__type__add_term
+msgid "Add Term"
+msgstr "Tambah Termin"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields.selection,name:ssi_school_payment_term_amendment.selection__school_payment_term_amendment_line__type__change_price
+msgid "Change Price"
+msgstr "Ubah Harga"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.model.fields.selection,name:ssi_school_payment_term_amendment.selection__school_payment_term_amendment_line__type__void
+msgid "Void Detail"
+msgstr "Batalkan Detail"
+
+#. module: ssi_school_payment_term_amendment
+#: model:ir.ui.menu,name:ssi_school_payment_term_amendment.school_payment_term_amendment_reason_menu
+msgid "Payment Term Amendment Reasons"
+msgstr "Alasan Perubahan Termin Pembayaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:res.groups,name:ssi_school_payment_term_amendment.school_payment_term_amendment_all_group
+msgid "All"
+msgstr "Semua"
+
+#. module: ssi_school_payment_term_amendment
+#: model:res.groups,name:ssi_school_payment_term_amendment.school_payment_term_amendment_company_child_group
+msgid "Company and All Child Companies"
+msgstr "Perusahaan dan Semua Anak Perusahaan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:res.groups,name:ssi_school_payment_term_amendment.school_payment_term_amendment_company_group
+msgid "Company"
+msgstr "Perusahaan"
+
+#. module: ssi_school_payment_term_amendment
+#: model:res.groups,name:ssi_school_payment_term_amendment.school_payment_term_amendment_reason_group
+msgid "Payment Term Amendment Reason"
+msgstr "Alasan Perubahan Termin Pembayaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model:res.groups,name:ssi_school_payment_term_amendment.school_payment_term_amendment_user_group
+msgid "User"
+msgstr "Pengguna"
+
+#. module: ssi_school_payment_term_amendment
+#: model:res.groups,name:ssi_school_payment_term_amendment.school_payment_term_amendment_validator_group
+msgid "Validator"
+msgstr "Validator"
+
+#. module: ssi_school_payment_term_amendment
+#: model:res.groups,name:ssi_school_payment_term_amendment.school_payment_term_amendment_viewer_group
+msgid "Viewer"
+msgstr "Penampil"
+
+#. module: ssi_school_payment_term_amendment
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_enrollment_view_form_amendment
+msgid "Amendments"
+msgstr "Perubahan"
+
+#. module: ssi_school_payment_term_amendment
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_form
+msgid "Amendment Detail"
+msgstr "Detail Perubahan"
+
+#. module: ssi_school_payment_term_amendment
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_form
+msgid "Target"
+msgstr "Sasaran"
+
+#. module: ssi_school_payment_term_amendment
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_form
+msgid "New Detail"
+msgstr "Detail Baru"
+
+#. module: ssi_school_payment_term_amendment
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_form
+msgid "Result"
+msgstr "Hasil"
+
+#. module: ssi_school_payment_term_amendment
+#: model_terms:ir.ui.view,arch_db:ssi_school_payment_term_amendment.school_payment_term_amendment_view_search
+msgid "Group By"
+msgstr "Kelompokkan Berdasarkan"
